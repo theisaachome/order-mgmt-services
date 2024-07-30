@@ -1,0 +1,16 @@
+server:
+  port: 8090
+
+spring:
+  config:
+    import: optional:configserver:http://localhost:8888
+  application:
+    name: customer-service
+  data:
+    mongodb:
+      username: ecom-app
+      password: ecom-app@12345
+      host: localhost
+      port: 27017
+      database: customer
+      authentication-database: admin
