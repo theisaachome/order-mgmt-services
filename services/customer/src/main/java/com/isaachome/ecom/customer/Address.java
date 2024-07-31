@@ -15,3 +15,11 @@ public class Address {
     private String houseNumber;
     private String zipcode;
 }
+
+//db.createUser(
+//{
+//    user: "ecom-app",
+//            pwd: "ecom-app@12345",
+//        roles: [ { role: "role", db: "database" } ]
+//}
+//)
