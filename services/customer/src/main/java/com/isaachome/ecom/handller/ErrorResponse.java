@@ -1,4 +1,4 @@
-package com.isaachome.ecom.exception;
+package com.isaachome.ecom.handller;
 
 import java.util.Map;
 
