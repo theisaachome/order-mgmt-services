@@ -1,0 +1,23 @@
+server:
+  port: 8070
+spring:
+  config:
+    import: optional:configserver:http://localhost:8888
+  application:
+    name: order-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/ms_ecom_order_db
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database: mysql
+    show-sql: true
+
+
+application:
+  config:
+    customer-url: http://localhost:8090/api/v1/customers
+    product-url: http://localhost:8050/api/v1/products
+    payment-url: http://localhost:8050/api/v1/payments
