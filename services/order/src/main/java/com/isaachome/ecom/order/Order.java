@@ -1,6 +1,7 @@
 package com.isaachome.ecom.order;
 
 import com.isaachome.ecom.orderline.OrderLine;
+import com.isaachome.ecom.payment.PaymentMethod;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;

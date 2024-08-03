@@ -1,5 +1,6 @@
 package com.isaachome.ecom.order;
 
+import com.isaachome.ecom.payment.PaymentMethod;
 import com.isaachome.ecom.product.PurchaseRequest;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;

@@ -1,4 +1,4 @@
-package com.isaachome.ecom.order;
+package com.isaachome.ecom.payment;
 
 public enum PaymentMethod {
     PAYPAL,

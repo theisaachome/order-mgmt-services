@@ -1,5 +1,7 @@
 package com.isaachome.ecom.order;
 
+import com.isaachome.ecom.payment.PaymentMethod;
+
 import java.math.BigDecimal;
 
 public record OrderResponse(

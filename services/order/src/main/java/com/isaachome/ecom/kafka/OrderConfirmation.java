@@ -1,7 +1,7 @@
 package com.isaachome.ecom.kafka;
 
 import com.isaachome.ecom.customer.CustomerResponse;
-import com.isaachome.ecom.order.PaymentMethod;
+import com.isaachome.ecom.payment.PaymentMethod;
 import com.isaachome.ecom.product.PurchaseResponse;
 
 import java.math.BigDecimal;
