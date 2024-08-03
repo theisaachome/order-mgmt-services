@@ -6,6 +6,8 @@ import com.isaachome.ecom.kafka.OrderConfirmation;
 import com.isaachome.ecom.kafka.OrderProducer;
 import com.isaachome.ecom.orderline.OrderLineRequest;
 import com.isaachome.ecom.orderline.OrderLineService;
+import com.isaachome.ecom.payment.PaymentClient;
+import com.isaachome.ecom.payment.PaymentRequest;
 import com.isaachome.ecom.product.ProductClient;
 import com.isaachome.ecom.product.PurchaseRequest;
 import jakarta.persistence.EntityNotFoundException;
@@ -25,6 +27,7 @@ public class OrderService {
     private final  OrderMapper mapper;
     private final OrderLineService orderLineService;
     private final OrderProducer orderProducer;
+    private final PaymentClient paymentClient;
     public Integer createOrder(OrderRequest request) {
         //check customer  => openFeign
          var customer = customerClient.getCustomerById(request.customerId())
@@ -43,7 +46,14 @@ public class OrderService {
                     purchaseRequest.quantity()
             ));
         }
-        //todo start payment process
+        // start payment process
+        paymentClient.requestOrderPayment(new PaymentRequest(
+                request.amount(),
+                request.paymentMethod(),
+                order.getId(),
+                request.reference(),
+                customer
+        ));
 
         // send order confirmation  -> notification-service (kafka)
         orderProducer.sendOrderConfirmation(new OrderConfirmation(
