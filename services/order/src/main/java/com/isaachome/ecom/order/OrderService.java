@@ -2,7 +2,10 @@ package com.isaachome.ecom.order;
 
 import com.isaachome.ecom.customer.CustomerClient;
 import com.isaachome.ecom.exception.BusinessException;
+import com.isaachome.ecom.orderline.OrderLineRequest;
+import com.isaachome.ecom.orderline.OrderLineService;
 import com.isaachome.ecom.product.ProductClient;
+import com.isaachome.ecom.product.PurchaseRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,8 +13,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class OrderService {
 
+    private final OrderRepository repository;
     private final CustomerClient customerClient;
     private final ProductClient productClient;
+    private final  OrderMapper mapper;
+    private final OrderLineService orderLineService;
     public Integer createOrder(OrderRequest request) {
         //check customer  => openFeign
          var customer = customerClient.getCustomerById(request.customerId())
@@ -20,10 +26,17 @@ public class OrderService {
         this.productClient.getPurchaseProduct(request.products());
 
         // persist order
-
+        var order = repository.save(mapper.toOrderEntity(request));
         // persist order-line
-
-        // start payment process
+        for(PurchaseRequest purchaseRequest:request.products()) {
+            orderLineService.saveOrderLine(new OrderLineRequest(
+                    null,
+                    order.getId(),
+                    purchaseRequest.productId(),
+                    purchaseRequest.quantity()
+            ));
+        }
+        //todo start payment process
 
         // send order confirmation  -> notification-service (kafka)
 
