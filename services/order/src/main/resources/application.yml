@@ -11,7 +11,7 @@ spring:
     password: root
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create-drop
     database: mysql
     show-sql: true
   kafka:
@@ -26,5 +26,5 @@ spring:
 application:
   config:
     customer-url: http://localhost:8090/api/v1/customers
-    product-url: http://localhost:8050/api/v1/products
+    product-url: http://localhost:8060/api/v1/products
     payment-url: http://localhost:8050/api/v1/payments

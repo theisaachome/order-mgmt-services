@@ -6,6 +6,9 @@ spring:
     import: optional:configserver:http://localhost:8888
   application:
     name: customer-service
+#  data:
+#    mongodb:
+#      uri:
   data:
     mongodb:
       username: ecom-app

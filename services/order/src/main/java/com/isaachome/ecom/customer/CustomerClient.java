@@ -8,8 +8,7 @@ import java.util.Optional;
 
 @FeignClient(
         name = "customer-service",
-        value = "",
-        url = "${application.config.customer-url"
+        url = "${application.config.customer-url}"
 )
 public interface CustomerClient {
     @GetMapping("/{customer-id}")
